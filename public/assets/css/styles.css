@@ -1,0 +1,27 @@
+
+
+
+
+
+
+.form-control {
+  width: 200px;
+  margin: 5px;
+}
+
+#search {
+  width: 600px;
+}
+
+.row {
+  padding: 20px 200px;
+}
+
+.col {
+  margin: 5px;
+}
+
+.add-user-button {
+  padding-top: 30px;
+  padding-bottom: 100px;
+}

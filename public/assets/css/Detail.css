@@ -1,0 +1,46 @@
+.part {
+    float: left;
+    width: 25%;
+    padding: 20px;
+}
+.part img {
+    width: 100%;
+    border: 0.5 solid gray;
+    padding: 5px;
+}
+.part a {
+    display: block;
+}
+.imagelist {
+    width: 100%;
+}
+.imagelist .part {
+    padding: 0;
+}
+.imagelist:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.imagetext {
+    position: relative;
+    bottom: 15px;
+    left: 15px;
+    color: white;
+    font-size: 20px;
+}
+.mainimage {
+    width: 100%;
+    margin-bottom: 10px;
+}
+#storage::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+#storage {
+    overflow: hidden;
+}
+#sellerinformation {
+    border: 0.5 solid gray;
+}

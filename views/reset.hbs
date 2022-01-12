@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="public/assets/css/login-screen.css">
+
+<main>
+    <div id="logreg-forms">
+        <form class="form-signup" action="/reset" method="POST" onsubmit="return ValidatePassword()">
+            <input type="password" name="password" class="form-control" placeholder="Password" required autofocus=""
+                value="{{password}}">
+            <input type="password" name="repeat" class="form-control" placeholder="Repeat Password" required
+                autofocus="" value="{{repeat}}">
+
+            <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-check"></i>&nbsp;Confirm</button>
+            <a href="/login" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
+        </form>
+        <br>
+    </div>
+</main>
+
+<script>
+    history.replaceState("","","/login");
+    $('#logreg-forms .form-signup').toggle();
+    var password = document.getElementsByName("password")[0];
+    var repeat = document.getElementsByName("repeat")[0];
+
+    function ValidatePassword() {
+        if (repeat.value == "") {
+            repeat.setCustomValidity("Please fill out this field.");
+            repeat.reportValidity();
+        }
+        else if (password.value.localeCompare(repeat.value) != 0) {
+            repeat.setCustomValidity("Passwords don't match");
+            repeat.reportValidity();
+        } else {
+            repeat.setCustomValidity('');
+        }
+
+    }
+    password.onchange = ValidatePassword;
+    repeat.onkeyup = ValidatePassword;
+</script>

@@ -1,0 +1,34 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<main>
+    <form style="padding: 30px; background-color: rgba(220, 230, 233, 0.466); margin: 30px;" method="POST">
+        <h4>Category Infomation</h4>
+
+        <div class="form-group">
+                <label>Name</label>
+                <label  class="form-control" id="txtCatName">{{this.category.name}}</label>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>ID</label>
+                <label  class="form-control" id="txtCatId">{{this.category.id}}</label>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label>Quantity</label>
+                <label  class="form-control" id="txtPro">{{this.quantity}}</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Parent Category</label>
+            <label class="form-control" id="txtCatPar">{{this.category.parent}}</label>
+        </div>
+            
+
+        <a role="button" href="/admin/category" class="btn btn-outline-success" >Back
+            <i class="fa fa-backward" aria-hidden="true"></i>
+        </a>
+</form>
+</main>

@@ -1,0 +1,21 @@
+<main>
+    <div class="container-lg">
+        {{#if announce}}
+        <div class="alert alert-warning alert-dismissible fade show mb-5" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{announce}}
+        </div>
+        {{/if}}
+        <h1 class="mx-auto text-muted" style="width: fit-content;">Online Auction</h1>
+        <h3 class="mx-auto text-primary" style="width: fit-content;">GPA Team</h3>
+        <h5 class="mx-auto text-success" style="width: fit-content;">Check your email for the OTP.</h5>
+        <h6 class="mx-auto small" style="width: fit-content;">Please enter OTP to continue</h6>
+        <form class="mx-auto justify-content-center d-flex flex-column" style="width: fit-content;" method="POST">
+            <input class="d-block mb-1" type="text" name="otp" placeholder="OTP">
+            <button class="btn btn-primary m-auto btn-outline-light" type="submit">Submit</button>
+        </form>
+    </div>
+    </div>
+</main>

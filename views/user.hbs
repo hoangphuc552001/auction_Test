@@ -1,0 +1,126 @@
+
+<link rel="stylesheet" href="/public/assets/css/tabset.css">
+<main>
+    <form method="POST">
+        <div class="ad-user-nav">
+            <div class="tabset" class="table table-bordered table-striped ">
+                <!-- Tab 1 seller -->
+                <input type="radio" name="tabset" id="tab1" aria-controls="seller" checked="">
+                <label for="tab1">Seller</label>
+                <!-- Tab 2 bidder-->
+                <input type="radio" name="tabset" id="tab2" aria-controls="bidder">
+                <label for="tab2">Bidder</label>
+                <!-- Tab 3 bidder-->
+                <input type="radio" name="tabset" id="tab3" aria-controls="bidder-request">
+                <label for="tab3">Request</label>
+    
+                <div class="tab-panels">
+                    <section id="seller" class="tab-panel">
+                        <div class="table-responsive">
+                            <table class="table product-table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Rating</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each seller}}
+                                    <tr>
+                                        <td>
+                                            {{!-- <a href="/user-info"><img src="/assets/img/user1001.png" class="user-img" /></a> --}}
+                                        </td>
+                                        <td>{{id}}</td>
+                                        <td>{{name}}</td>
+                                        <td>{{rating}}</td>
+                                        <td>
+                                            <a role="button" href="user/user-view/{{id}}" class="btn btn-outline-primary"
+                                                name="btn-view-s"><i class="far fa-eye"></i></a>
+                                            <button type="submit" class="btn btn-outline-warning" name="btn-down"
+                                                formaction="user/down-seller/{{id}}"><i class="far fa-thumbs-down"></i></button>
+                                            <button type="submit" class="btn btn-outline-danger" name="btn-remove-s"
+                                                formaction="user/del-user/{{id}}"><i class="far fa-trash-alt"></i></button>
+    
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </section>
+                    <section id="bidder" class="tab-panel">
+                        <table class="table product-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Rating</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each bidder}}
+                                <tr>
+                                    <td>
+                                        {{!-- <a href="/user-info"><img src="/assets/img/user1001.png" class="user-img" /></a> --}}
+                                    </td>
+                                    <td>{{id}}</td>
+                                    <td>{{name}}</td>
+                                    <td>{{rating}}</td>
+                                    <td>
+                                        <a role="button" href="user/user-view/{{id}}" class="btn btn-outline-primary"
+                                            name="btn-view-b"><i class="far fa-eye"></i></a>
+                                        <button type="submit" class="btn btn-outline-danger" name="btn-remove-b"
+                                            formaction="user/del-user/{{id}}"><i class="far fa-trash-alt"></i></button>
+
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </section>
+                    <section id="bidder-request" class="tab-panel">
+                        <table class="table product-table">
+                            <thead>
+                                <tr>
+                                    <th>Bidder</th>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Rating</th>
+                                    <th>Approve</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each request}}
+                                <tr>
+                                    <td>
+                                        {{!-- <a href="/user-info"><img src="/assets/img/user1001.png" class="user-img" /></a> --}}
+                                    </td>
+                                    <td>{{id}}</td>
+                                    <td>{{name}}</td>
+                                    <td>{{rating}}</td>
+                                    <td>
+                                        <button role="button" class="btn btn-outline-warning" name="btn-up"
+                                            formaction="user/up-bidder/{{id}}"><i class="far fa-thumbs-up"></i></button>
+                                    </td>
+                                </tr>
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+    
+            </div>
+    
+            {{!-- <div class="d-xl-flex justify-content-xl-center align-items-xl-center add-user-button">
+                <a id="user-add" class="btn btn-outline-success" role="button" href="user/user-add">Add</a>
+            </div> --}}
+        </div>
+    </form>
+</main>

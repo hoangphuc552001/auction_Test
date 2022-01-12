@@ -1,0 +1,43 @@
+#path {
+    padding-left: 5px;
+    margin: 0;
+}
+#path li {
+    display: inline;
+    font-size: 13px;
+}
+h5 {
+    font-weight: bold;
+}
+.filter input[type="text"]{
+    width: 30%;
+}
+.filter input[type="radio"]{
+    width: 10px;
+    height: 10px;
+}
+.content label {
+    font-size: 12px;
+}
+.list ul {
+    text-align: left;
+}
+.list {
+    margin: 0;
+}
+#order {
+    width: 120px;
+    display: inline-block;
+    position: relative;
+    left: calc(100% - 120px);
+}
+#togglefilter {
+    position: relative;
+    left: -100px;
+    display: none;
+}
+.row {
+    margin-left: 3px;
+    margin-right: 3px;
+    width: calc(100% - 6px);
+}

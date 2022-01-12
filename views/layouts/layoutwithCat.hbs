@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/public/assets/css/footer-dark.css">
+    <link rel="stylesheet" href="/public/assets/css/dropdown-submenu.css">
+    <link rel="stylesheet" href="/public/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/public/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <title>Auction</title>
+    <link rel="stylesheet" href="/public/assets/css/base.css">
+    <style>
+    </style>
+</head>
+
+<body>
+{{>header}}
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card">
+                <h4 class="card-header">
+                    Categories
+                </h4>
+                <div class="list-group list-group-flush">
+                    {{#each categories}}
+                        <a href="/product/byCat/{{id}}" class="list-group-item list-group-item-action list-group-item-secondary
+                        {{#if isActive}}active{{/if}}">
+                            <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            {{name}}
+                            {{#if ProductCount}}
+                                <span class="badge badge-pill badge-success text-right float-right">
+                                    {{ProductCount}}
+                                </span>
+                            {{/if}}
+
+                        </a>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="card mt-3">
+                <h4 class="card-header">
+                    Guiding
+                </h4>
+                <div class="card-body">
+                    <h4 class="card-title">In the box there are:</h4>
+                    <p class="card-text">
+                        <i class="fa fa-plus-circle" style="color: #ff4d00 !important;" aria-hidden="true"></i>
+                        Instruction manual, Box machine, Type C - Type A cable, Pickaxe does not quickly leave the Type
+                        A end</p>
+                </div>
+                <div class="card-footer text-muted">
+                    <p class="card-text">
+                        <i class="fa fa-check-circle-o" style="color: #37ff00 !important;" aria-hidden="true"></i>
+                        Selling price includes VAT.
+                    </p>
+                    <p class="card-text">
+                        <i class="fa fa-check-circle-o" style="color: #37ff00 !important;" aria-hidden="true"></i>
+                        100% new product.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            {{{body}}}
+            <!--            pagination-->
+<!--            <div style="font-size: 50px">{{searchpro}}</div>-->
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item {{#unless can_go_prev}}disabled{{/unless}}">
+                            <a class="page-link" href="?page={{prev_value}}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        {{#each this.page_items}}
+                            {{#if isActive}}
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">{{value}} <span class="sr-only">(current)</span></a>
+                                </li>
+                            {{else}}
+                                <li class="page-item {{#if isDisabled}}disabled{{/if}}"><a class="page-link"
+                                                                                           href="?page={{value}}&name={{searchpro}}">
+                                        {{"value"}}</a></li>
+                            {{/if}}
+                        {{/each}}
+                        <li class="page-item {{#unless can_go_next}}disabled{{/unless}}">
+                            <a class="page-link" href="?page={{next_value}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</div>
+{{>footer}}
+</body>
+
+
+</html>

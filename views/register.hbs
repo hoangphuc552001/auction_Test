@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="/public/assets/css/login-screen.css">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{{#section 'css'}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha512-f0tzWhCwVFS3WeYaofoLWkTP62ObhewQ1EZn65oSYDZUg1+CyywGKkWzm8BxaJj5HGKI72PnMH9jYyIFz+GH7g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{{/section}}
+{{#section 'js'}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('#txtDob').datetimepicker({
+            timepicker:false,
+            format:'d/m/Y',
+            mask:true
+        });
+        $('#txtUsername').select();
+    </script>
+{{/section}}
+<main>
+    <div id="logreg-forms">
+        <form class="form-signup" method="POST">
+            <div class="social-login">
+                <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign
+                        up with
+                        Facebook</span> </button>
+            </div>
+            <div class="social-login">
+                <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign
+                        up with
+                        Google+</span> </button>
+            </div>
+
+            <p style="text-align:center">OR</p>
+
+            <input type="text" name="register_name" class="form-control" placeholder="Full name" required=""
+                autofocus="" id="txtUsername" value="{{name}}">
+            <input type="email" name="register_email" class="form-control" placeholder="Email address" required
+                autofocus="" value="{{email}}">
+
+            <input type="text" name="register_address" class="form-control" placeholder="Address" required autofocus=""
+                   value="{{address}}">
+
+            <input type="text" name="register_birthday" id="txtDob" class="form-control" placeholder="Birthday" required autofocus=""
+                   value="{{birthday}}">
+            <p id="error" class="d-none">{{error}}</p>
+            <input type="password" name="register_password" class="form-control" placeholder="Password" required
+                autofocus="" value="{{password}}">
+            <input type="password" name="register_repeatpassword" class="form-control" placeholder="Repeat Password"
+                required autofocus="" value="{{repeat}}">
+            <div class="form-row justify-content-center">
+                <div class="g-recaptcha" data-sitekey="6LdmDs4UAAAAAFQ4KRWVcLBLWuNe_8SrZBWQC4jd"></div>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+            <a href="/login" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
+        </form>
+        <br>
+    </div>
+
+    <div>
+
+    </div>
+</main>
+
+<script>
+    $('#logreg-forms .form-signup').toggle();
+    var password = document.getElementsByName("register_password")[0];
+    var repeat = document.getElementsByName("register_repeatpassword")[0];
+    var email = document.getElementsByName("register_email")[0];
+    if (document.getElementById("error").innerHTML) {
+        email.setCustomValidity(document.getElementById("error").innerHTML);
+        email.reportValidity();
+    }
+
+    function Default() {
+        if (email.value == "") {
+            email.setCustomValidity("Please fill out this field.");
+        } else {
+            email.setCustomValidity('');
+        }
+    }
+
+    function ValidatePassword() {
+        if (repeat.value == "") {
+            repeat.setCustomValidity("Please fill out this field.");
+            repeat.reportValidity();
+        }
+        else if (password.value != repeat.value) {
+            repeat.setCustomValidity("Passwords don't match");
+            repeat.reportValidity();
+        } else {
+            repeat.setCustomValidity('');
+        }
+    }
+    password.onchange = ValidatePassword;
+    email.onchange = Default;
+    repeat.onkeyup = ValidatePassword;
+</script>

@@ -1,0 +1,53 @@
+<main>
+    <div class="span12">
+        <div class="span6">
+            <h1 class="muted btn-success mt-3">Details Rating</h1>
+        </div>
+    </div>
+    <div class="table-responsive text-nowrap mt-5">
+        <!--Table-->
+        <table class="table table-striped">
+
+            <!--Table head-->
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Time Comment</th>
+                <th>Comment</th>
+            </tr>
+            </thead>
+            <!--Table head-->
+
+            <!--Table body-->
+            <tbody>
+            {{#each ratinglist}}
+                <tr>
+                    <th scope="row">{{stt}}</th>
+                    <td>{{masked name}}</td>
+                    <td>{{rating}}</td>
+                    <td>{{timestamp_ time}}</td>
+                    <td>{{comment}}</td>
+                </tr>
+            {{/each}}
+<!--            <tr>-->
+<!--                <th scope="row">6</th>-->
+<!--                <td>Gary</td>-->
+<!--                <td>Winogrand</td>-->
+<!--                <td>USA / The United Kingdom / China / Russia </td>-->
+<!--                <td>New York City / Warsaw / Lodz / Amsterdam / London / Chicago</td>-->
+<!--                <td>Web Designer /UX designer / Ul designer / JavaScript Developer</td>-->
+<!--                <td>37</td>-->
+<!--            </tr>-->
+
+            </tbody>
+            <!--Table body-->
+
+
+        </table>
+        <!--Table-->
+    </div>
+    </section>
+    <!--Section: Live preview-->
+</main>

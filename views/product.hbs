@@ -1,0 +1,74 @@
+
+<link rel="stylesheet" href="/public/assets/css/ad-product.css">
+
+<main>
+    <form method="POST">
+    <div class="product-table" style="padding: 10px;">
+
+        <div align="center" style="padding-bottom: 10px;">
+                <a class="btn btn-outline-dark" style=" background-color: rgb(255, 255, 255); width: 50%; border-color: blanchedalmond;">
+                    {{!-- <i class="fas fa-plus-circle" aria-hidden="true"></i> --}}
+                    <h2 style="color: rgb(146, 158, 148);">Product</h2>
+                </a>
+        </div>
+
+        <div class="table table-bordered table-striped " style="text-align: center;">
+            <table class="table product-table" >
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product</th>
+                        <th>Name</th>
+                        <th>Seller</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody style="padding: 10px;">
+                    {{#each products}}
+                    <tr>
+                        <td>{{id}}</td>
+                        <td><a href="{{image}}"><img  class="img-fluid img-thumbnail" src="{{image}}"></a>
+                        </td>
+                        <td>{{name}}</td>
+                        <td>{{seller}}</td>
+                        <td>{{start}}</td>
+                        <td>{{end}}</td>
+                        <td>
+                             <button type="submit" class="btn btn-outline-danger" name="btn-remove"  formaction="product/del/{{id}}"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <nav class="nav-page" >
+                <ul class="pagination" >
+                    <li class="page-item {{#unless this.can_go_prev}}disabled{{/unless}}">
+                        <a class="page-link"  role="button" href="/admin/product/?page={{prev_value}}" tabindex="-1" aria-disabled="true">
+                            <i class="fa fa-backward" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    {{#each this.page_items}}
+                    {{#if this.isActive}}
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" >{{value}} <span class="sr-only">(current)</span></a>
+                    </li>
+                    {{else}}
+                    <li class="page-item">
+                        <a class="page-link"  role="button" href="/admin/product/?page={{value}}">{{value}}</a>
+                    </li>
+                    {{/if}}
+                    {{/each}}
+                    <li class="page-item {{#unless this.can_go_next}}disabled{{/unless}}">
+                        <a class="page-link"  role="button" href="/admin/product/?page={{next_value}}">
+                            <i class="fa fa-forward" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            </div>
+    </div>
+    </form>
+</main>

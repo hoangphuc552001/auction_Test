@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="/assets/css/profile.css">
+<link rel="stylesheet" href="/assets/css/profile-edit-form.css">
+<link rel="stylesheet" href="/assets/css/projects-horizontal.css">
+<main>
+<div href="/assets/css/Profile.css" class="container bootstrap snippets" style="margin-top:2%">
+
+    <div class="row" id="user-profile">
+
+        <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+
+            <div class="card p-4">
+
+
+                <div class="image d-flex flex-column justify-content-center align-items-center">
+                    <button class="btn">
+                        <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" height="100" width="100"/>
+                    </button>
+                    <span class="name mt-3">{{this.user.name}}</span>
+                    <span class="idd">{{this.user.email}}</span>
+                    <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                        <span class="idd1">{{this.user.privilege}}</span>
+                    </div>
+                    <div>{{Time_ this.user.birthday}}</div>
+                    <div>{{this.user.address}}</div>
+                    <div class="d-flex flex-row justify-content-center align-items-center mt-3 ">
+                        <span class="number">{{this.user.rating}}</span>
+                    </div>
+                    <span>
+                         <i class="fa fa-star" style="color: #d0d01b" aria-hidden="true"></i>
+                        <i class="fa fa-star" style="color: #d0d01b" aria-hidden="true"></i>
+                         <i class="fa fa-star" style="color: #d0d01b" aria-hidden="true"></i>
+                    <i class="fa fa-star" style="color: #d0d01b" aria-hidden="true"></i>
+                         <i class="fa fa-star" aria-hidden="true"></i>
+                    </span>
+
+
+                    <div class="d-flex mt-2">
+                        <a class="btn btn-sm btn-outline-success"
+                           href="/admin/user/changepassword/{{this.user.id}}" role="button">
+                            Change Password
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="text mt-3">
+
+            <span>GPA.com, Inc. is an Viet Name multinational technology company.<br/><br/>
+              E-commerce, cloud computing, digital streaming, and artificial intelligence
+            </span>
+                    </div>
+                    <div class=" gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
+                        <span><i class="fa fa-twitter"></i></span>
+                        <span><i class="fa fa-facebook-f"></i></span>
+                        <span><i class="fa fa-instagram"></i></span>
+                        <span><i class="fa fa-linkedin"></i></span>
+                    </div>
+                    <div class="px-2 rounded mt-4 date">
+                        <span class="join">Joined Dec,2021</span>
+                    </div>
+
+                </div>
+                <div class="profile-header clearfix">
+
+                    <a href="/admin/user" class="btn btn-primary edit-profile">
+                        <i class="fa fa-backward"></i> Back
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</main>
+<script src="/public/assets/js/Profile-Edit-Form.js"></script>
+<script src="/public/assets/js/bidderViewList.js"></script>

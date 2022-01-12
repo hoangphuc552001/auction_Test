@@ -1,0 +1,33 @@
+html, body {
+    margin: 0;
+    background-color: whitesmoke;
+    padding: 0;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+  }
+
+  a:hover {
+    color: slategray;
+    text-decoration: none;
+  }
+
+  .product:hover {
+    box-shadow: 1px 1px 1px 1px gray;
+  }

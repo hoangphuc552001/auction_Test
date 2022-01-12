@@ -1,0 +1,50 @@
+
+    <link rel="stylesheet" href="/public/assets/css/category.css">
+    <main>
+      <form method="POST">
+        <div class="container-category">
+            <div class="row">
+              <div class="col-12">
+
+                <div>
+                  <a class="btn btn-outline-success" href="category/category-add" role="button">
+                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                    Add Category
+                  </a>
+                </div>
+
+                <table class="table table-bordered table-striped " style="text-align: center;">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="width: 15%;">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col" style="width: 25%;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each category}}
+                    <tr>
+                      <th scope="row">{{id}}</th>
+                      <td style="text-align: center;">{{name}}</td>
+                      <td>
+                        <a role="button" href="category/category-view/{{id}}" class="btn btn-primary" name="btn-view-cat"><i class="far fa-eye"></i></a>
+                        <a role="button" href="category/category-edit/{{id}}" class="btn btn-success" name="btn-edit-cat"><i class="fas fa-edit"></i></a>
+                        <button type="submit" class="btn btn-danger" name="btn-remove-cat"  formaction="category/del/{{id}}"><i class="far fa-trash-alt"></i></button>
+                      
+                      </td>
+                    </tr>
+                    {{/each}}
+                   
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+      </form>
+    </main> 
+
+    <script>
+      function Check(id){
+        alert('ssssssss');
+      }
+    </script>

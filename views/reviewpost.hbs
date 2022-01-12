@@ -1,0 +1,252 @@
+{{#section 'js'}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('#announce-modal').on('hide.bs.modal show.bs.modal', function (event) {
+            var $activeElement = $(document.activeElement);
+            if ($activeElement.is('[data-toggle], [data-dismiss]')) {
+                if (event.type === 'hide') {
+                    if ($activeElement[0].id === "confirm") {
+                        document.getElementById('frmRV').submit();
+                    }
+                }
+                if (event.type === 'show') {
+                    $('#announce').html("Are you sure to send review?");
+                }
+            }
+        });
+
+    </script>
+{{/section}}
+
+<style>
+    body {
+        background-repeat: no-repeat;
+        color: #000;
+        overflow-x: hidden;
+    }
+
+    a {
+        text-decoration: none !important;
+        color: inherit;
+    }
+
+    a:hover {
+        color: #455a64;
+    }
+
+    .card {
+        border-radius: 5px;
+        background-color: #fff;
+        padding-left: 60px;
+        padding-right: 60px;
+        margin-top: 30px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .rating-box {
+        width: 130px;
+        height: 130px;
+        margin-right: auto;
+        margin-left: auto;
+        background-color: #fbc02d;
+        color: #fff;
+    }
+
+    .rating-label {
+        font-weight: bold;
+    }
+
+    .rating-bar {
+        width: 300px;
+        padding: 8px;
+        border-radius: 5px;
+    }
+
+    .bar-container {
+        width: 100%;
+        background-color: #f1f1f1;
+        text-align: center;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-bottom: 5px;
+    }
+
+    .bar-2 {
+        width: {{percentDisLike}}%;
+        height: 13px;
+        background-color: #fbc02d;
+        border-radius: 20px;
+    }
+
+    .bar-1 {
+        width: {{percentLike}}%;
+        height: 13px;
+        background-color: #fbc02d;
+        border-radius: 20px;
+    }
+
+    td {
+        padding-bottom: 10px;
+    }
+
+    .star-active {
+        color: #fbc02d;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .star-active:hover {
+        color: #f9a825;
+        cursor: pointer;
+    }
+
+    .star-inactive {
+        color: #cfd8dc;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .blue-text {
+        color: #0091ea;
+    }
+
+    .content {
+        font-size: 18px;
+    }
+
+    .profile-pic {
+        width: 90px;
+        height: 90px;
+        border-radius: 100%;
+        margin-right: 30px;
+    }
+
+    .pic {
+        width: 80px;
+        height: 80px;
+        margin-right: 10px;
+    }
+
+    .vote {
+        cursor: pointer;
+    }
+
+</style>
+<main>
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
+                <p class="h2">Review Post</p>
+                <div class="card">
+                    <div class="row justify-content-left d-flex">
+                        <div class="col-md-12 d-flex flex-column">
+                            <div class="rating-box">
+                                <h1 class="pt-4">{{rating}}</h1>
+                                <p class="">out of 10</p>
+                            </div>
+                            <div>
+                                <span class="fa fa-star star-active mx-1"></span>
+                                <span class="fa fa-star star-active mx-1"></span>
+                                <span class="fa fa-star star-active mx-1"></span>
+                                <span class="fa fa-star star-active mx-1"></span>
+                                <span class="fa fa-star star-inactive mx-1"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="rating-bar0 justify-content-center">
+                                <table class="text-left mx-auto">
+                                    <tr>
+                                        <td class="rating-label">Like</td>
+                                        <td class="rating-bar">
+                                            <div class="bar-container">
+                                                <div class="bar-1"></div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">{{countLikeBidder}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rating-label">Dislike</td>
+                                        <td class="rating-bar">
+                                            <div class="bar-container">
+                                                <div class="bar-2"></div>
+                                            </div>
+                                        </td>
+                                        <td class="text-right">{{countDisLikeBidder}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="row d-flex">
+                        <div class="">
+                            <img
+                                    src="https://cdn-icons-png.flaticon.com/512/147/147144.png"
+                                    height="100"
+                                    width="100"
+                            />
+                        </div>
+                        <div class="d-flex center flex-column">
+                            <h3 class="mt-2 mb-0">{{masked name}}</h3>
+                            <div>
+                                <p class="text-center">
+                                    <span class="text-muted">{{rating}}</span>
+                                    <span class="fa fa-star star-active ml-3"></span>
+                                    <span class="fa fa-star star-active"></span>
+                                    <span class="fa fa-star star-active"></span>
+                                    <span class="fa fa-star star-active"></span>
+                                    <span class="fa fa-star star-inactive"></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="ml-auto mb-3">
+                            <p class="text-muted pt-5 pt-sm-3">{{timestamp_ today}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="text-left">
+                            <label  for="exampleFormControlTextarea1">Review Post</label >
+                        </div>
+                        <form method="post" id="frmRV" action="/account/reviewpost/{{seller}}/{{productid}}/{{like}}">
+                            <div class="row">
+                                <div class="col-11">
+                                    <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                                <div class="col-1 mt-4">
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#announce-modal">Send</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal fade" id="announce-modal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form class="form-horizontal" id="announce-form">
+                                        <div class="modal-header">
+                                            <h6 class="modal-title">GPA Online Auction</h6>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body py-0" id="announce" style="white-space: pre;">
+                                        </div>
+                                        <div class="modal-footer py-0">
+                                            <button data-dismiss="modal" class="btn btn-danger btn-sm" id="confirm">
+                                                Confirm
+                                            </button>
+                                            <button data-dismiss="modal" class="btn btn-default btn-sm border"
+                                                    id="cancel">Cancel
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

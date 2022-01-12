@@ -1,0 +1,1167 @@
+<link rel="stylesheet" href="/assets/css/profile.css">
+<link rel="stylesheet" href="/assets/css/profile-edit-form.css">
+<link rel="stylesheet" href="/assets/css/projects-horizontal.css">
+<main>
+<div href="/assets/css/Profile.css" class="container bootstrap snippets" style="margin-top:2%">
+<div class="row" id="user-profile">
+    {{#with session.user}}
+        <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+            <div class="card p-4">
+                <div class="image d-flex flex-column justify-content-center align-items-center">
+                    <button class="btn">
+                        <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" height="100"
+                             width="100"/>
+                    </button>
+                    <span class="name mt-3">{{name}}</span>
+                    <span class="idd">{{email}}</span>
+                    <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                        <span class="idd1">{{privilege}}</span>
+                    </div>
+                    <div>{{Time_ birthday}}</div>
+                    <div>{{address}}</div>
+                    <div class="d-flex flex-row justify-content-center align-items-center mt-3 ">
+                        <span class="number">{{rating}}</span>
+                    </div>
+                    <span>
+                         <i class="fa fa-star" style="color: #d0d01b" aria-hidden="true"></i>
+                        <i class="fa fa-star" style="color: #d0d01b" aria-hidden="true"></i>
+                         <i class="fa fa-star" style="color: #d0d01b" aria-hidden="true"></i>
+                    <i class="fa fa-star" style="color: #d0d01b" aria-hidden="true"></i>
+                         <i class="fa fa-star" aria-hidden="true"></i>
+                    </span>
+                    <div class="d-flex mt-2">
+                        <a class="btn btn-sm btn-outline-success"
+                           href="/account/editprofile" role="button">
+                            Edit Profile
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="d-flex mt-2">
+                        <a class="btn btn-sm btn-outline-success"
+                           href="/account/changepassword" role="button">
+                            Change Password
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    {{#if ../session.authenticated}}
+                        {{#if (equal ../session.user.privilege "seller")}}
+                            <div class="d-flex mt-2">
+                                <a class="btn btn-sm btn-outline-success"
+                                   href="/account/upload" role="button">
+                                    Upload Product
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        {{/if}}
+                    {{/if}}
+                    <div class="text mt-3">
+
+            <span>GPA.com, Inc. is an Viet Name multinational technology company.<br/><br/>
+              E-commerce, cloud computing, digital streaming, and artificial intelligence
+            </span>
+                    </div>
+                    <div class=" gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
+                        <span><i class="fa fa-twitter"></i></span>
+                        <span><i class="fa fa-facebook-f"></i></span>
+                        <span><i class="fa fa-instagram"></i></span>
+                        <span><i class="fa fa-linkedin"></i></span>
+                    </div>
+                    <div class="px-2 rounded mt-4 date">
+                        <span class="join">Joined Dec,2021</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:2%; margin-left:2%;margin-right:2%">
+            <ul class="nav nav-tabs">
+                {{#if ../session.authenticated}}
+                    {{#if (equal ../session.user.privilege "admin")}}
+                        <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab"
+                                                href="#tab-1">Watch List</a></li>
+                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab"
+                                                href="#tab-2">Bidding Product</a></li>
+                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Won
+                            Product</a></li>
+
+                        <button type="button" class="btn" style="color: #0D6EFD" data-toggle="modal"
+                                data-target="#history-modal-bidder">
+                            Send Review
+                        </button>
+                        <button type="button" class="btn" style="color: #0D6EFD" data-toggle="modal"
+                                data-target="#history-modal-seller">
+                            Receive Review
+                        </button>
+                        <div class="modal fade" id="history-modal-bidder" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title">GPA Online Auction</h6>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table border my-1">
+                                            <thead class="thead-dark">
+                                            <tr>
+                                                <th>Seller</th>
+                                                <th>Product Name</th>
+                                                <th>Time Review</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#each ../ratinghistorybidder}}
+                                                <tr>
+                                                    <td>{{masked sellername}}</td>
+                                                    <td>{{name}}</td>
+                                                    <td>{{timestamp_ time}}</td>
+                                                    <td>{{comment}}</td>
+                                                </tr>
+                                            {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn btn-danger btn-sm" id="confirm">
+                                            Confirm
+                                        </button>
+                                        <button data-dismiss="modal" class="btn btn-default btn-sm border"
+                                                id="cancel">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="history-modal-seller" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title">GPA Online Auction</h6>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table border my-1">
+                                            <thead class="thead-dark">
+                                            <tr>
+                                                <th>Seller</th>
+                                                <th>Product Name</th>
+                                                <th>Time Review</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#each ../ratinghistoryseller}}
+                                                <tr>
+                                                    <td>{{masked sellername}}</td>
+                                                    <td>{{name}}</td>
+                                                    <td>{{timestamp_ time}}</td>
+                                                    <td>{{comment}}</td>
+                                                </tr>
+                                            {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn btn-danger btn-sm" id="confirm">
+                                            Confirm
+                                        </button>
+                                        <button data-dismiss="modal" class="btn btn-default btn-sm border"
+                                                id="cancel">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{#if (equal ../session.user.request  null)}}
+                            {{#unless (equal ../session.user.privilede  "seller")}}
+                                <li>
+                                    <form method="POST">
+                                        <button class="btn btn-outline-warning" type="submit"
+                                                formaction="/account/upgrade/{{id}}">Upgrade to
+                                            Seller
+                                        </button>
+                                    </form>
+                                </li>
+                            {{/unless}}
+                        {{/if}}
+                    {{/if}}
+                    {{#if (equal ../session.user.privilege "bidder")}}
+                        <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab"
+                                                href="#tab-1">Watch List</a></li>
+                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab"
+                                                href="#tab-2">Bidding Product</a></li>
+                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Won
+                            Product</a></li>
+
+                        <button type="button" class="btn" style="color: #0D6EFD" data-toggle="modal"
+                                data-target="#history-modal-bidder">
+                            Send Review
+                        </button>
+                        <button type="button" class="btn" style="color: #0D6EFD" data-toggle="modal"
+                                data-target="#history-modal-seller">
+                            Receive Review
+                        </button>
+                        <div class="modal fade" id="history-modal-bidder" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title">GPA Online Auction</h6>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table border my-1">
+                                            <thead class="thead-dark">
+                                            <tr>
+                                                <th>Seller</th>
+                                                <th>Product Name</th>
+                                                <th>Time Review</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#each ../ratinghistorybidder}}
+                                                <tr>
+                                                    <td>{{masked sellername}}</td>
+                                                    <td>{{name}}</td>
+                                                    <td>{{timestamp_ time}}</td>
+                                                    <td>{{comment}}</td>
+                                                </tr>
+                                            {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn btn-danger btn-sm" id="confirm">
+                                            Confirm
+                                        </button>
+                                        <button data-dismiss="modal" class="btn btn-default btn-sm border"
+                                                id="cancel">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="history-modal-seller" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title">GPA Online Auction</h6>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table border my-1">
+                                            <thead class="thead-dark">
+                                            <tr>
+                                                <th>Seller</th>
+                                                <th>Product Name</th>
+                                                <th>Time Review</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#each ../ratinghistoryseller}}
+                                                <tr>
+                                                    <td>{{masked sellername}}</td>
+                                                    <td>{{name}}</td>
+                                                    <td>{{timestamp_ time}}</td>
+                                                    <td>{{comment}}</td>
+                                                </tr>
+                                            {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn btn-danger btn-sm" id="confirm">
+                                            Confirm
+                                        </button>
+                                        <button data-dismiss="modal" class="btn btn-default btn-sm border"
+                                                id="cancel">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{#if (equal ../session.user.request  null)}}
+                            <li>
+                                <form method="POST">
+                                    <button class="btn btn-outline-warning" type="submit"
+                                            formaction="/account/upgrade/{{id}}">Upgrade to
+                                        Seller
+                                    </button>
+                                </form>
+                            </li>
+                        {{/if}}
+                    {{/if}}
+                    {{#if (equal ../session.user.privilege "seller")}}
+                        <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab"
+                                                href="#tab-1">Watch List</a></li>
+                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab"
+                                                href="#tab-2">Bidding Product</a></li>
+                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab"
+                                                href="#tab-3">Won Product</a></li>
+                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab"
+                                                href="#tab-4">Ongoing Listed Items</a></li>
+                        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab"
+                                                href="#tab-5">Ended Listed Items</a></li>
+                        <button type="button" class="btn" style="color: #0D6EFD" data-toggle="modal"
+                                data-target="#history-modal-seller1">
+                            Send Review
+                        </button>
+                        <button type="button" class="btn" style="color: #0D6EFD" data-toggle="modal"
+                                data-target="#history-modal-bidder1">
+                            Receive Review
+                        </button>
+                        <div class="modal fade" id="history-modal-seller1" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title">GPA Online Auction</h6>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table border my-1">
+                                            <thead class="thead-dark">
+                                            <tr>
+                                                <th>Bidder</th>
+                                                <th>Product Name</th>
+                                                <th>Time Review</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#each ../ratinghistoryseller1}}
+                                                <tr>
+                                                    <td>{{masked biddername}}</td>
+                                                    <td>{{name}}</td>
+                                                    <td>{{timestamp_ time}}</td>
+                                                    <td>{{comment}}</td>
+                                                </tr>
+                                            {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn btn-danger btn-sm" id="confirm">
+                                            Confirm
+                                        </button>
+                                        <button data-dismiss="modal" class="btn btn-default btn-sm border"
+                                                id="cancel">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="history-modal-bidder1" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title">GPA Online Auction</h6>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table border my-1">
+                                            <thead class="thead-dark">
+                                            <tr>
+                                                <th>Bidder</th>
+                                                <th>Product Name</th>
+                                                <th>Time Review</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#each ../ratinghistorybidder1}}
+                                                <tr>
+                                                    <td>{{masked biddername}}</td>
+                                                    <td>{{name}}</td>
+                                                    <td>{{timestamp_ time}}</td>
+                                                    <td>{{comment}}</td>
+                                                </tr>
+                                            {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn btn-danger btn-sm" id="confirm">
+                                            Confirm
+                                        </button>
+                                        <button data-dismiss="modal" class="btn btn-default btn-sm border"
+                                                id="cancel">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/if}}
+            </ul>
+            <div class="tab-content">
+                {{#if (equal ../session.user.privilege "admin")}}
+                    <div class="tab-pane active" role="tabpanel" id="tab-1">
+                        <div class="projects-horizontal">
+                            <div class="container">
+                                <div id="watchList" class="row projects">
+                                    {{#each ../watchlist}}
+                                        <div class="col-6 col-sm-6 col-lg-3">
+                                            <a href="/detail/{{id}}">
+                                                <img src="{{image}}" class="rounded img-fluid m-1" alt="image">
+                                                <h5 class="text-center">{{name}} {{{new start}}}
+                                                    {{#unless (equal status "bidding")}} <b>({{status}})</b>
+                                                    {{/unless}}</h5>
+                                                {{#if info }}
+                                                    <p class="text-center m-0">Bidder:{{{masked info}}}</p>
+                                                    <p class="text-center m-0">Seller:{{{masked sellername}}}</p>
+                                                {{else}}
+                                                    <p class="text-center m-0">&nbsp; &nbsp;</p>
+                                                {{/if}}
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{format_number cap}}</p>
+                                                    <p class="float-right m-0">{{bids}} Bids</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{{timestamp_ start}}}</p>
+                                                    <p class="float-right text-danger m-0">{{{remain end}}}ays</p>
+                                                </div>
+                                                <p class="text-center text-info font-weight-bold">{{format_number
+                                                        current}}
+                                                </p>
+                                            </a>
+                                            <div>
+                                                <form method="post">
+                                                    <button type="submit" name="id" value={{id}}
+                                                            formaction="/product/watchlist"
+                                                            class="btn btn-danger">
+                                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    </button>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    {{/each}}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" role="tabpanel" id="tab-2">
+                        <div class="projects-horizontal">
+                            <div class="container">
+                                <div id="participatingAuctions" class="projects row">
+                                    {{#each ../participate}}
+                                        <div class="col-6 col-sm-6 col-lg-3">
+                                            <a href="/detail/{{product}}">
+                                                <img src="{{image}}" class="rounded img-fluid m-1" alt="image">
+                                                <h5 class="text-center">{{name}} {{{new start}}}
+                                                    {{#if holderBid}}
+                                                        <img width="40px" height="40px" src="../public/icon/auction.png">
+                                                    {{/if}}
+                                                    {{#unless (equal status "bidding")}} <b>({{status}})</b>
+                                                    {{/unless}}</h5>
+                                                {{#if info }}
+                                                    <p class="text-center m-0">Bidder:{{{masked info}}}</p>
+                                                    <p class="text-center m-0">Seller:{{{masked sellername}}}</p>
+                                                {{else}}
+                                                    <p class="text-center m-0">&nbsp; &nbsp;</p>
+                                                {{/if}}
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{format_number cap}}</p>
+                                                    <p class="float-right m-0">{{bids}} Bids</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{{timestamp_ start}}}</p>
+                                                    <p class="float-right text-danger m-0">{{{remain end}}}ays</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">Bid time: {{{timestamp_ time}}}</p>
+                                                </div>
+                                                <p class="text-center text-info font-weight-bold">{{format_number
+                                                        current}}
+                                                </p>
+                                            </a>
+                                        </div>
+                                    {{/each}}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" role="tabpanel" id="tab-3">
+                        <div class="projects-horizontal">
+                            <div class="container">
+                                <div id="wonAuctions" class="row projects">
+                                    {{#each ../wonlist}}
+                                        <div class="col-6 col-sm-6 col-lg-3">
+                                            <a href="/detail/{{id}}">
+                                                <img src="{{image}}" class="rounded img-fluid m-1" alt="image">
+                                                <h5 class="text-center">{{name}}
+                                                    {{{new start}}}{{#unless (equal status "bidding")}}
+                                                        <b>({{status}})</b> {{/unless}}</i></h5>
+                                                <p class="text-center m-0">Seller: {{{masked sellername}}}</p>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{format_number cap}}</p>
+                                                    <p class="float-right m-0">{{bids}} Bids</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{{timestamp_ start}}}</p>
+                                                    <p class="float-right text-danger m-0">{{{remain end}}}ays</p>
+                                                </div>
+                                                <p class="text-center text-info font-weight-bold">{{format_number
+                                                        current}}
+                                                </p>
+                                            </a>
+                                            <p class="text-center mt-2">
+                                            <button type="button" class="btn" data-toggle="modal"
+                                                {{#if checkRate}}
+                                                data-target="#rated
+                                                        {{else}}
+                                                        data-target="#like{{id}}
+                                                {{/if}}
+                                                ">
+                                                <i class="fa fa-thumbs-o-up fa-2x" style="color: blue"
+                                                   aria-hidden="true"></i>
+                                                </button>
+                                                    <button type="button" class="btn" data-toggle="modal"
+                                                {{#if checkRate}}
+                                                data-target="#rated
+                                                        {{else}}
+                                                        data-target="#dis{{id}}
+                                                {{/if}}">
+                                                <i class="fa fa-thumbs-o-down fa-2x" style="color:red;"
+                                                   aria-hidden="true"></i>
+                                                </button>
+                                            </p>
+
+                                            <div class="modal fade" id="rated" tabindex="-1" role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                Annoucement</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            You already reviewed this product
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">OK
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Like Modal -->
+                                            <div class="modal fade" id="like{{id}}" tabindex="-1" role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Review
+                                                                Post</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Do you want to review post
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close
+                                                            </button>
+                                                            <form action="/account/reviewpost/{{seller}}/{{id}}/like">
+                                                                <button type="submit" class="btn btn-primary">Yes
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Dislike Modal -->
+                                            <div class="modal fade" id="dis{{id}}" tabindex="-1" role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Review
+                                                                Post</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Do you want to review post
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close
+                                                            </button>
+                                                            <form action="/account/reviewpost/{{seller}}/{{id}}/dislike">
+                                                                <button type="submit" class="btn btn-primary">Yes
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+                {{#if (equal ../session.user.privilege "bidder")}}
+                    <div class="tab-pane active" role="tabpanel" id="tab-1">
+                        <div class="projects-horizontal">
+                            <div class="container">
+                                <div id="watchList" class="row projects">
+                                    {{#each ../watchlist}}
+                                        <div class="col-6 col-sm-6 col-lg-3">
+                                            <a href="/detail/{{id}}">
+                                                <img src="{{image}}" class="rounded img-fluid m-1" alt="image">
+                                                <h5 class="text-center">{{name}} {{{new start}}}
+                                                    {{#unless (equal status "bidding")}} <b>({{status}})</b>
+                                                    {{/unless}}</h5>
+                                                {{#if info }}
+                                                    <p class="text-center m-0">Bidder:{{{masked info}}}</p>
+                                                    <p class="text-center m-0">Seller:{{{masked sellername}}}</p>
+                                                {{else}}
+                                                    <p class="text-center m-0">&nbsp; &nbsp;</p>
+                                                {{/if}}
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{format_number cap}}</p>
+                                                    <p class="float-right m-0">{{bids}} Bids</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{{timestamp_ start}}}</p>
+                                                    <p class="float-right text-danger m-0">{{{remain end}}}ays</p>
+                                                </div>
+                                                <p class="text-center text-info font-weight-bold">{{format_number
+                                                        current}}
+                                                </p>
+                                            </a>
+                                            <div>
+                                                <form method="post">
+                                                    <button type="submit" name="id" value={{id}}
+                                                            formaction="/product/watchlist"
+                                                            class="btn btn-danger">
+                                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    </button>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    {{/each}}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" role="tabpanel" id="tab-2">
+                        <div class="projects-horizontal">
+                            <div class="container">
+                                <div id="participatingAuctions" class="projects row">
+                                    {{#each ../participate}}
+                                        <div class="col-6 col-sm-6 col-lg-3">
+                                            <a href="/detail/{{product}}">
+                                                <img src="{{image}}" class="rounded img-fluid m-1" alt="image">
+                                                <h5 class="text-center">{{name}} {{{new start}}}
+                                                    {{#if holderBid}}
+                                                        <img width="40px" height="40px" src="../public/icon/auction.png">
+                                                    {{/if}}
+                                                    {{#unless (equal status "bidding")}} <b>({{status}})</b>
+                                                    {{/unless}}</h5>
+                                                {{#if info }}
+                                                    <p class="text-center m-0">Bidder:{{{masked info}}}</p>
+                                                    <p class="text-center m-0">Seller:{{{masked sellername}}}</p>
+                                                {{else}}
+                                                    <p class="text-center m-0">&nbsp; &nbsp;</p>
+                                                {{/if}}
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{format_number cap}}</p>
+                                                    <p class="float-right m-0">{{bids}} Bids</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{{timestamp_ start}}}</p>
+                                                    <p class="float-right text-danger m-0">{{{remain end}}}ays</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">Bid time: {{{timestamp_ time}}}</p>
+                                                </div>
+                                                <p class="text-center text-info font-weight-bold">{{format_number
+                                                        current}}
+                                                </p>
+                                            </a>
+                                        </div>
+                                    {{/each}}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" role="tabpanel" id="tab-3">
+                        <div class="projects-horizontal">
+                            <div class="container">
+                                <div id="wonAuctions" class="row projects">
+                                    {{#each ../wonlist}}
+                                        <div class="col-6 col-sm-6 col-lg-3">
+                                            <a href="/detail/{{id}}">
+                                                <img src="{{image}}" class="rounded img-fluid m-1" alt="image">
+                                                <h5 class="text-center">{{name}}
+                                                    {{{new start}}}{{#unless (equal status "bidding")}}
+                                                        <b>({{status}})</b> {{/unless}}</i></h5>
+                                                <p class="text-center m-0">Seller: {{{masked sellername}}}</p>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{format_number cap}}</p>
+                                                    <p class="float-right m-0">{{bids}} Bids</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{{timestamp_ start}}}</p>
+                                                    <p class="float-right text-danger m-0">{{{remain end}}}ays</p>
+                                                </div>
+                                                <p class="text-center text-info font-weight-bold">{{format_number
+                                                        current}}
+                                                </p>
+                                            </a>
+                                            <p class="text-center mt-2">
+                                            <button type="button" class="btn" data-toggle="modal"
+                                                {{#if checkRate}}
+                                                data-target="#rated
+                                                        {{else}}
+                                                        data-target="#like{{id}}
+                                                {{/if}}
+                                                ">
+                                                <i class="fa fa-thumbs-o-up fa-2x" style="color: blue"
+                                                   aria-hidden="true"></i>
+                                                </button>
+                                                    <button type="button" class="btn" data-toggle="modal"
+                                                {{#if checkRate}}
+                                                data-target="#rated
+                                                        {{else}}
+                                                        data-target="#dis{{id}}
+                                                {{/if}}">
+                                                <i class="fa fa-thumbs-o-down fa-2x" style="color:red;"
+                                                   aria-hidden="true"></i>
+                                                </button>
+                                            </p>
+
+                                            <div class="modal fade" id="rated" tabindex="-1" role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                Annoucement</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            You already reviewed this product
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">OK
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Like Modal -->
+                                            <div class="modal fade" id="like{{id}}" tabindex="-1" role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Review
+                                                                Post</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Do you want to review post
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close
+                                                            </button>
+                                                            <form action="/account/reviewpost/{{seller}}/{{id}}/like">
+                                                                <button type="submit" class="btn btn-primary">Yes
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Dislike Modal -->
+                                            <div class="modal fade" id="dis{{id}}" tabindex="-1" role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Review
+                                                                Post</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Do you want to review post
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close
+                                                            </button>
+                                                            <form action="/account/reviewpost/{{seller}}/{{id}}/dislike">
+                                                                <button type="submit" class="btn btn-primary">Yes
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+
+                {{#if (equal ../session.user.privilege "seller")}}
+                    <div class="tab-pane active" role="tabpanel" id="tab-1">
+                        <div class="projects-horizontal">
+                            <div class="container">
+                                <div id="watchList" class="row projects">
+                                    {{#each ../watchlist}}
+                                        <div class="col-6 col-sm-6 col-lg-3">
+                                            <a href="/detail/{{id}}">
+                                                <img src="{{image}}" class="rounded img-fluid m-1" alt="image">
+                                                <h5 class="text-center">{{name}} {{{new start}}}
+                                                    {{#unless (equal status "bidding")}} <b>({{status}})</b>
+                                                    {{/unless}}</h5>
+                                                {{#if info }}
+                                                    <p class="text-center m-0">{{{masked info}}}</p>
+                                                {{else}}
+                                                    <p class="text-center m-0">&nbsp; &nbsp;</p>
+                                                {{/if}}
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{format_number cap}}</p>
+                                                    <p class="float-right m-0">{{bids}} Bids</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{{timestamp_ start}}}</p>
+                                                    <p class="float-right text-danger m-0">{{{remain end}}}ays</p>
+                                                </div>
+                                                <p class="text-center text-info font-weight-bold">{{format_number
+                                                        current}}
+                                                </p>
+                                            </a>
+                                        </div>
+                                    {{/each}}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" role="tabpanel" id="tab-2">
+                        <div class="projects-horizontal">
+                            <div class="container">
+                                <div id="participatingAuctions" class="row projects">
+                                    {{#each ../participate}}
+                                        <div class="col-6 col-sm-6 col-lg-3">
+                                            <a href="/detail/{{id}}">
+                                                <img src="{{image}}" class="rounded img-fluid m-1" alt="image">
+                                                <h5 class="text-center">{{name}} {{{new start}}}
+                                                    {{#if holderBid}}
+                                                        <img width="40px" height="40px" src="../public/icon/auction.png">
+                                                    {{/if}}
+                                                    {{#unless (equal status "bidding")}} <b>({{status}})</b>
+                                                    {{/unless}}</h5>
+                                                {{#if info }}
+                                                    <p class="text-center m-0">{{{masked info}}}</p>
+                                                {{else}}
+                                                    <p class="text-center m-0">&nbsp; &nbsp;</p>
+                                                {{/if}}
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{format_number cap}}</p>
+                                                    <p class="float-right m-0">{{bids}} Bids</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{{timestamp_ start}}}</p>
+                                                    <p class="float-right text-danger m-0">{{{remain end}}}ays</p>
+                                                </div>
+                                                <p class="text-center text-info font-weight-bold">{{format_number
+                                                        current}}
+                                                </p>
+                                            </a>
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" role="tabpanel" id="tab-3">
+                        <div class="projects-horizontal">
+                            <div class="container">
+                                <div id="wonAuctions" class="row projects">
+                                    {{#each ../wonlist}}
+                                        <div class="col-6 col-sm-6 col-lg-3">
+                                            <a href="/detail/{{id}}">
+                                                <img src="{{image}}" class="rounded img-fluid m-1" alt="image">
+                                                <h5 class="text-center">{{name}}
+                                                    {{{new start}}}{{#unless (equal status "bidding")}}
+                                                        <b>({{status}})</b> {{/unless}}</i></h5>
+                                                <p class="text-center m-0">{{{masked info}}}</p>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{format_number cap}}</p>
+                                                    <p class="float-right m-0">{{bids}} Bids</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{{timestamp_ start}}}</p>
+                                                    <p class="float-right text-danger m-0">{{{remain end}}}ays</p>
+                                                </div>
+                                                <p class="text-center text-info font-weight-bold">{{format_number
+                                                        current}}
+                                                </p>
+                                            </a>
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" role="tabpanel" id="tab-4">
+                        <div class="projects-horizontal">
+                            <div class="container">
+                                <div id="ongoingListed" class="row projects">
+                                    {{#each ../ongoing}}
+                                        <div class="col-6 col-sm-6 col-lg-3">
+                                            <a href="/detail/{{id}}">
+                                                <img src="{{image}}" class="rounded img-fluid m-1" alt="image">
+                                                <h5 class="text-center">{{name}}
+                                                    {{{new start}}}{{#unless (equal status "bidding")}}
+                                                        <b>({{status}})</b> {{/unless}}</i></h5>
+                                                <p class="text-center m-0">{{{masked info}}}</p>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{format_number cap}}</p>
+                                                    <p class="float-right m-0">{{bids}} Bids</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{{timestamp_ start}}}</p>
+                                                    <p class="float-right text-danger m-0">{{{remain end}}}ays</p>
+                                                </div>
+                                                <p class="text-center text-info font-weight-bold">{{format_number
+                                                        current}}
+                                                </p>
+                                                <div class="d-flex mt-2">
+                                                    <a class="btn btn-sm btn-outline-success"
+                                                       href="/account/edit/{{id}}" role="button">
+                                                        Update Description
+                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" role="tabpanel" id="tab-5">
+                        <div class="projects-horizontal">
+                            <div class="container">
+                                <div id="endedListed" class="row projects">
+                                    {{#each ../soldlist}}
+                                        <div class="col-6 col-sm-6 col-lg-3">
+                                            <a href="/detail/{{id}}">
+                                                <img src="{{image}}" class="rounded img-fluid m-1" alt="image">
+                                                <h5 class="text-center">{{name}}
+                                                    {{{new start}}}{{#unless (equal status "bidding")}}
+                                                        <b>({{status}})</b> {{/unless}}</i></h5>
+                                                <p class="text-center m-0">{{{masked info}}}</p>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{format_number cap}}</p>
+                                                    <p class="float-right m-0">{{bids}} Bids</p>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <p class="float-left m-0">{{{timestamp_ start}}}</p>
+                                                    <p class="float-right text-danger m-0">{{{remain end}}}ays</p>
+                                                </div>
+                                                <p class="text-center text-info font-weight-bold">{{format_number
+                                                        current}}
+                                                </p>
+                                                <form method="post">
+                                                    <button type="submit"
+                                                            onclick="alert(confirm('Do you sure to cancel this deal?'))"
+                                                            formaction="/account/cancel/{{id}}"
+                                                            class="btn btn-outline-danger mt-2 ml-2"
+                                                            style="padding: 5px;border: solid 3px" id="reject">
+                                                        Cancel DEAL <i
+                                                            class="fa fa-ban"
+                                                            aria-hidden="true"></i>
+                                                    </button>
+                                                </form>
+                                            </a>
+                                            <p class="text-center mt-2">
+                                            <button type="button" class="btn" data-toggle="modal"
+                                                {{#if checkRate1}}
+                                                data-target="#rated1
+                                                            {{else}}
+                                                            data-target="#like{{id}}
+                                                {{/if}}
+                                                ">
+                                                <i class="fa fa-thumbs-o-up fa-2x" style="color: blue"
+                                                   aria-hidden="true"></i>
+                                                </button>
+                                                    <button type="button" class="btn" data-toggle="modal"
+                                                {{#if checkRate1}}
+                                                data-target="#rated1
+                                                            {{else}}
+                                                            data-target="#dis{{id}}
+                                                {{/if}}">
+                                                <i class="fa fa-thumbs-o-down fa-2x" style="color:red;"
+                                                   aria-hidden="true"></i>
+                                                </button>
+                                            </p>
+
+                                            <div class="modal fade" id="rated1" tabindex="-1" role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                Annoucement</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            You already reviewed this product
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">OK
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Like Modal -->
+                                            <div class="modal fade" id="like{{id}}" tabindex="-1" role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Review
+                                                                Post</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Do you want to review post
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close
+                                                            </button>
+                                                            <form action="/account/reviewpost/seller/{{holder}}/{{id}}/like">
+                                                                <button type="submit" class="btn btn-primary">Yes
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Dislike Modal -->
+                                            <div class="modal fade" id="dis{{id}}" tabindex="-1" role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Review
+                                                                Post</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Do you want to review post
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close
+                                                            </button>
+                                                            <form action="/account/reviewpost/seller/{{holder}}/{{id}}/dislike">
+                                                                <button type="submit" class="btn btn-primary">Yes
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    </div>
+        </div>
+    {{/with}}
+    </div>
+    </div>
+</main>
+<script src="/public/assets/js/Profile-Edit-Form.js"></script>
+<script src="/public/assets/js/bidderViewList.js"></script>

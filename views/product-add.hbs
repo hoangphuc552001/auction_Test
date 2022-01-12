@@ -1,0 +1,120 @@
+        {{#section 'js'}}
+        <script src="https://cdn.tiny.cloud/1/y5mq9cxhnrazibmar3is1h9fk4jgcqogpct32s2r0wa3t7za/tinymce/5/tinymce.min.js"
+            referrerpolicy="origin"></script>
+        {{!-- <script>tinymce.init({ selector: 'textarea' });</script> --}}
+        <script>
+            tinymce.init({
+                selector: 'textarea',
+                height: 600,
+                plugins: 'paste image link autolink lists table media',
+                menubar: false,
+                toolbar: [
+                    'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright',
+                    'forecolor backcolor',
+                    'table link image media',
+                ],
+            });
+        </script>
+        {{/section}}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 ">
+                    <div class="list-group ">
+                        <a href="/account/profile" class="list-group-item list-group-item-action ">Profile</a>
+                        <a href="/account/changepassword" class="list-group-item list-group-item-action">Change Password</a>
+                        <a href="/account/myProducts" class="list-group-item list-group-item-action active">Product</a>
+                    </div>
+                </div>
+                <div class="col-md-9 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Upload Product Information</h4>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{#if message}}
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        {{message}}
+                                    </div>
+                                    {{/if}}
+                                    <form action="/account/upload" method="POST">
+                                              <div class="form-group">
+                                                <label for="cate" class="col-sm-3 control-label"  >Category</label>
+                                                <div class="col-sm-9">
+                                                <select class="form-control" type="text" id="cate" name="cate"
+                                                    style="min-width: 200px; margin: 0px;width: 200px;">>
+
+                                                                {{#each category}}
+                                                                    <option style="width: 200px;" value={{id}}>{{name}}</option>
+                                                                {{/each}}
+                                                </select>
+                                                </div>
+                                              </div>
+                                        <div class="form-group">
+                                            <label for="Name" class="col-sm-3 control-label">Product Name</label>
+                                            <div class="col-sm-9">
+                                                <input id="ProName" name="Name" class="form-control here" type="text"
+                                                    required="required">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="start" class="col-sm-3 control-label">Start Price</label>
+                                            <div class="col-sm-9">
+                                                <input id="StartPrice" name="start" required="required"
+                                                    class="form-control here" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Reservation" class="col-sm-3 control-label">Reservation price</label>
+                                            <div class="col-sm-9">
+                                                <input id="Reservation" name="Reservation" class="form-control here"
+                                                    type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Incre" class="col-sm-3 control-label">Increment <p>(If value <100.000 auto default 100.000)</p> </label>
+                                            <div class="col-sm-9">
+                                                <input id="Incre" name="Incre" class="form-control here" type="text"
+                                                    required="required">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="btn btn-default blue">
+                                                    <input type="radio" class="toggle" name="renew1" id="renew1" value="yes"> Auto-renew
+                                                </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                                <label class="btn btn-default blue">
+                                                    <input type="radio" class="toggle" name="allowbid" id="allowbid" value="yes"> Allow bidder who have never bid to bid
+                                                </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Des" class="col-sm-3 control-label">Description</label>
+                                            <div class="col-sm-9">
+                                                <textarea id="Des" name="Des" class="form-control here" rows="3"
+                                                    type="text"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="offset-4 col-sm-9">
+                                                <button type="submit" class="btn btn-success">Continue</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

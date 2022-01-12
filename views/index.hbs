@@ -1,0 +1,395 @@
+<link rel="stylesheet" href="/public/btnWL.css">
+<link rel="stylesheet" href="/public/btnBid_.css">
+<!-- Page Content -->
+
+<div class="products">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="filters">
+                    <section>
+                        <ul>
+                            <li class="list active" data-filter="popular">Popular</li>
+                            <li class="list" data-filter="des">Highest Price</li>
+                            <li class="list" data-filter="dev">Most Bid</li>
+                            <li class="list" data-filter="gra">Last Minute</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            {{#if this.empty}}
+                <h5 class="card-title">Empty data</h5>
+                <p class="card-text">With support text below as a natural lead-in
+                    to additional content</p>
+            {{else}}
+                {{#each this.highestprice}}
+                    <div class="col-sm-4 mb-3 col-12 des popular">
+                        <div class="card">
+                            <a href="/detail/{{id}}">
+                                <img src="{{image}}" title="{{name}}" class="rounded img-fluid m-1" width="250px" height="250px" alt="image">
+                                <div class="card-body ">
+                                    <h4 class="card-title">{{name}}&nbsp;{{{new start}}} {{#if holderBid}}
+                                        <img width="40px" height="40px" src="../public/icon/auction.png">
+                                    {{/if}}
+                                    </h4>
+                                    <h5 class="card-title text-danger" >Current Price: {{format_number current}}</h5>
+                                    <p class="card-text" >Bidder: {{masked info}}</p>
+                                    <p class="card-text">Date Post: {{timestamp_ start}}</p>
+                                    <p class="card-text">Time Remaining: <span id="{{id}}"
+                                                                               style="font-weight: bold;font-size: 20px">
+                                    {{day}} days
+                                </span></p>
+                                    {{#if cap}}
+                                        <p class="card-text">Buy now:{{format_number cap}}</p>
+                                    {{/if}}
+                                    {{#if authenticated}}
+                                        <div>
+                                            <div class="container mt-2">
+                                                <div class="row">
+                                                    <div class="btn-group">
+                                                        <button class="btn-hover color-2 mt-2 mr-4" disabled>
+                                                            Bids:{{bids}}
+                                                            <i class="fa fa-gavel" aria-hidden="true"></i>
+                                                        </button>
+                                                        <form method="post">
+                                                            {{#if checkwl}}
+                                                                <button type="button" class="buttonAdd" disabled>
+                                                                    Added
+                                                                    <i class="fa fa-check-circle-o"
+                                                                       aria-hidden="true"></i>
+                                                                </button>
+                                                            {{else}}
+                                                                <button  type="submit" name="id" value={{id}}
+                                                                        class="button col-12"
+                                                                        formaction="/product/byCat/watchlist">
+                                                                    Watch List
+                                                                    <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                                                                </button>
+                                                            {{/if}}
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {{/if}}
+                                </div>
+                            </a>
+                            <div class="card-footer text-muted">
+                                <a class="btn btn-sm btn-outline-primary"
+                                   href="/detail/{{id}}" role="button">
+                                    Details
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            {{/if}}
+            {{#if this.empty}}
+                <h5 class="card-title">Empty data</h5>
+                <p class="card-text">With support text below as a natural lead-in
+                    to additional content</p>
+            {{else}}
+                {{#each this.mostbids}}
+                    <div class="col-sm-4 mb-3 col-12 dev popular">
+                        <div class="card h-100">
+                            <a href="/detail/{{id}}">
+                                <img src="{{image}}" title="{{name}}"  class="rounded img-fluid m-1" width="250px" height="250px" alt="image">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{name}} {{{new start}}} {{#if holderBid}}
+                                        <img width="40px" height="40px" src="../public/icon/auction.png">
+                                    {{/if}}
+                                    </h4>
+                                    <h5 class="card-title text-danger">Current Price: {{format_number current}}</h5>
+                                    <p class="card-text">Bidder: {{masked info}}</p>
+                                    <p class="card-text">Date Post: {{timestamp_ start}}</p>
+                                    <p class="card-text">Time Remaining: <span id="{{id}}"
+                                                                               style="font-weight: bold;font-size: 20px">
+                                    {{day}} days</span></p>
+                                    {{#if cap}}
+                                        <p class="card-text">Buy now:{{cap}}</p>
+                                    {{/if}}
+                                    {{#if authenticated}}
+                                        {{#if removewl}}
+                                            <div>
+                                                <form method="post">
+                                                    <button type="submit" name="id" value={{id}} formaction="watchlist"
+                                                            class="btn btn-danger">
+                                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    </button>
+                                                </form>
+
+                                            </div>
+                                        {{else}}
+                                            <div>
+                                                <div class="container mt-2">
+                                                    <div class="row">
+                                                        <div class="btn-group">
+                                                            <button class="btn-hover color-2 mt-2 mr-0 mr-lg-4 mr-sm-0" disabled>
+                                                                Bids:{{bids}}
+                                                                <i class="fa fa-gavel" aria-hidden="true"></i>
+                                                            </button>
+                                                            <form method="post">
+                                                                {{#if checkwl}}
+                                                                    <button type="button" class="buttonAdd" disabled>
+                                                                        Added
+                                                                        <i class="fa fa-check-circle-o"
+                                                                           aria-hidden="true"></i>
+                                                                    </button>
+                                                                {{else}}
+                                                                    <button type="submit" name="id" value={{id}}
+                                                                            class="button"
+                                                                            formaction="/product/byCat/watchlist">
+                                                                        Watch List
+                                                                        <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                                                                    </button>
+                                                                {{/if}}
+                                                            </form>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {{/if}}
+                                    {{/if}}
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <a class="btn btn-sm btn-outline-primary"
+                                       href="/detail/{{id}}" role="button">
+                                        Details
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {{/each}}
+            {{/if}}
+            {{#if this.empty}}
+                <h5 class="card-title">Empty data</h5>
+                <p class="card-text">With support text below as a natural lead-in
+                    to additional content</p>
+            {{else}}
+                {{#each this.instance}}
+                    <div class="col-sm-4 mb-3 col-12 gra popular">
+                        <div class="card h-100">
+                            <a href="/detail/{{id}}">
+                                <img src="{{image}}" title="{{name}}"  class="rounded img-fluid m-1" width="250px" height="250px" alt="image">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{name}} {{{new start}}} {{#if holderBid}}
+                                        <img width="40px" height="40px" src="../public/icon/auction.png">
+                                    {{/if}}
+                                    </h4>
+                                    <h5 class="card-title text-danger">Current Price: {{format_number current}}</h5>
+                                    <p class="card-text">Bidder: {{masked info}}</p>
+                                    <p class="card-text">Date Post: {{timestamp_ start}}</p>
+                                    <p class="card-text">Time Remaining: <span id="{{id}}"
+                                                                               style="font-weight: bold;font-size: 20px">
+
+                                </span></p>
+                                    {{#if cap}}
+                                        <p class="card-text">Buy now:{{format_number cap}}</p>
+                                    {{/if}}
+                                    {{#if authenticated}}
+                                        <div>
+                                            <div class="container mt-2">
+                                                <div class="row">
+                                                    <div class="btn-group">
+                                                        <button class="btn-hover color-2 mt-2 mr-4" disabled>
+                                                            Bids:{{bids}}
+                                                            <i class="fa fa-gavel" aria-hidden="true"></i>
+                                                        </button>
+                                                        <form method="post">
+                                                            {{#if checkwl}}
+                                                                <button type="button" class="buttonAdd" disabled>
+                                                                    Added
+                                                                    <i class="fa fa-check-circle-o"
+                                                                       aria-hidden="true"></i>
+                                                                </button>
+                                                            {{else}}
+                                                                <button type="submit" name="id" value={{id}}
+                                                                        class="button"
+                                                                        formaction="/product/byCat/watchlist">
+                                                                    Watch List
+                                                                    <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                                                                </button>
+                                                            {{/if}}
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {{/if}}
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <a class="btn btn-sm btn-outline-primary"
+                                       href="/detail/{{id}}" role="button">
+                                        Details
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {{/each}}
+            {{/if}}
+        </div>
+        <div style="text-align: center">
+            <a href="/product/mobilephone" style="color: #1a6692;font-size: 20px">Show More
+                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+            </a>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.list').click(function () {
+            const value = $(this).attr('data-filter');
+            if (value === 'popular') {
+                $('.popular').show('1000');
+            } else {
+                $('.popular').not('.' + value).hide('1000');
+                $('.popular').filter('.' + value).show('1000');
+            }
+        })
+        $('.list').click(function () {
+            $(this).addClass('active').siblings().removeClass('active');
+        })
+    })
+</script>
+<!-- Bootstrap core JavaScript -->
+<script src="/public/vendor/jquery/jquery.min.js"></script>
+<script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    var timeArray = []
+    var id = []
+        {{#each this.instance}}
+        // Set the date we're counting down to
+        var countDownDate = new Date("{{end}}").getTime();
+        timeArray.push(countDownDate);
+        id.push("{{id}}")
+        {{/each}}
+    for (let i = 0; i < timeArray.length; i++) {
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = timeArray[i] - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById(id[i]).innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById(id[i]).innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    }
+</script>
+<script>
+    var timeArray1 = []
+    var id1 = []
+        {{#each this.mostbids}}
+        // Set the date we're counting down to
+        var countDownDate1 = new Date("{{end}}").getTime();
+        timeArray1.push(countDownDate1);
+        id1.push("{{id}}")
+        {{/each}}
+    for (let i = 0; i < timeArray1.length; i++) {
+        // Update the count down every 1 second
+        var x1 = setInterval(function () {
+
+            // Get today's date and time
+            var now1 = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance1 = timeArray1[i] - now1;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days1 = Math.floor(distance1 / (1000 * 60 * 60 * 24));
+            var hours1 = Math.floor((distance1 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes1 = Math.floor((distance1 % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds1 = Math.floor((distance1 % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById(id1[i]).innerHTML = days1 + "d " + hours1 + "h "
+                    + minutes1 + "m " + seconds1 + "s ";
+
+            // If the count down is finished, write some text
+            if (distance1 < 0) {
+                clearInterval(x);
+                document.getElementById(id1[i]).innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    }
+</script>
+<script>
+    var timeArray2 = []
+    var id2 = []
+        {{#each this.highestprice}}
+        // Set the date we're counting down to
+        var countDownDate2 = new Date("{{end}}").getTime();
+        timeArray2.push(countDownDate2);
+        id2.push("{{id}}")
+        {{/each}}
+    for (let i = 0; i < timeArray2.length; i++) {
+        // Update the count down every 1 second
+        var x2 = setInterval(function () {
+
+            // Get today's date and time
+            var now2 = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance2 = timeArray2[i] - now2;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days2 = Math.floor(distance2 / (1000 * 60 * 60 * 24));
+            var hours2 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById(id2[i]).innerHTML = days2 + "d " + hours2 + "h "
+                    + minutes2 + "m " + seconds2 + "s ";
+
+            // If the count down is finished, write some text
+            if (distance2 < 0) {
+                clearInterval(x);
+                document.getElementById(id2[i]).innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    }
+</script>
+<!-- Additional Scripts -->
+<script src="/public/assets_layout/js/custom.js"></script>
+<script src="/public/assets_layout/js/owl.js"></script>
+<script src="/public/assets_layout/js/slick.js"></script>
+<script src="/public/assets_layout/js/isotope.js"></script>
+<script src="/public/assets_layout/js/accordions.js"></script>
+
+<script language="text/Javascript">
+    cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+    function clearField(t) {
+        //declaring the array outside of the
+        if (!cleared[t.id]) {
+            // function makes it static and global
+            cleared[t.id] = 1; // you could use true and false, but that's more typing
+            t.value = ""; // with more chance of typos
+            t.style.color = "#fff";
+        }
+    }
+</script>

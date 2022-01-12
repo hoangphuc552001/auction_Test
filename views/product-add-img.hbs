@@ -1,0 +1,38 @@
+{{#section 'css'}}
+  <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+{{/section}}
+
+{{#section 'js'}}
+  <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/js/fileinput.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.5/js/locales/vi.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.5/themes/fa/theme.min.js"></script>
+  <script>
+    $('#fuMain').fileinput({
+      dropZoneEnabled: false,
+      maxFileCount: 5,
+      allowedFileExtensions: ['jpg', 'png', 'gif'],
+      theme: 'fa',
+      language: 'vi',
+    });
+  </script>
+{{/section}}
+
+<form method="post" enctype="multipart/form-data">
+  <div class="card">
+    <h4 class="card-header">
+      Add image for Product
+    </h4>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="fuMain">Photo</label>
+        <input type="file" id="fuMain" name="fuMain" multiple>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Save
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,30 @@
+
+
+    <link rel="stylesheet" href="/public/assets/css/Profile.css">
+    <link rel="stylesheet" href="/public/assets/css/category.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <main>
+    <form style="padding: 30px; background-color: rgba(220, 230, 233, 0.466); margin: 30px;" method="POST" action="">
+
+        <h4>New Category</h4>
+        <div class="form-group">
+            <input class="form-control" type="text" id="txtCatName" name="txtCatName" placeholder="name" autofocus>
+          
+            <label for="exampleFormControlSelect1" style="padding-top: 10px;">Parent Select</label>
+            <select class="form-control" type="text" id="txtcategoryParent" name="txtcategoryParent">
+                <option value='-1'>null</option>
+                {{#each category}}
+                    <option value={{id}}>{{name}}</option>
+                {{/each}}
+            </select>
+           
+        </div>
+
+        <a role="button" href="/admin/category" class="btn btn-outline-success" >Back
+            <i class="fa fa-backward" aria-hidden="true"></i>
+        </a>
+        <button type="submit" class="btn btn-outline-primary">Save
+            <i class="fa fa-save" aria-hidden="true"></i>
+        </button>
+    </form>
+ </main>
