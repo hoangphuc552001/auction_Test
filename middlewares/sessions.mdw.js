@@ -10,11 +10,10 @@ export default function(app) {
     cookie: { secure: false, maxAge: 10800000},
     store: new MySQLStore({
       connectionLimit: 100,
-      host: 'localhost',
-      port: 3306,
-      user: 'root',
-      password: '',
-      database: 'heroku_7067838459c52ba',
+      host : 'us-cdbr-east-05.cleardb.net',
+      user : 'be44caddfce4b6',
+      password : '00bbb032',
+      database : 'heroku_7067838459c52ba',
       charset: 'utf8mb4_general_ci',
       schema: {
         tableName: 'sessions',
