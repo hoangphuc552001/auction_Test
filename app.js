@@ -24,14 +24,11 @@ app.use(express.urlencoded({extended:true}));
 app.use('/public',express.static('public'))
 
 // activate_session_middleware(app);
-// activate_locals_middleware(app)
+activate_locals_middleware(app)
 //
 activate_view_middleware(app);
-app.get("/alo", async function (req, res) {
-    res.render("index");
-})
 // //routes
-// activate_route_middleware(app);
+activate_route_middleware(app);
 // //
 // mail_middleware(app);
 app.listen(port, () => {
