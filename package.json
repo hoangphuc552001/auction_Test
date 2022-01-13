@@ -20,8 +20,9 @@
   },
   "homepage": "https://github.com/hoangphuc552001/Online-Auction-Project#readme",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "express": "^4.17.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
     "express-async-errors": "^3.1.1",
     "express-handlebars": "^6.0.1",
     "express-handlebars-sections": "^1.0.1",
@@ -38,6 +39,7 @@
     "node-cron": "^3.0.0",
     "node-sass": "^6.0.1",
     "numeral": "^2.0.6",
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "bcryptjs": "^2.4.3"
   }
 }
