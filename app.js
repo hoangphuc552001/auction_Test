@@ -23,7 +23,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.use('/public',express.static('public'))
 
-// activate_session_middleware(app);
+activate_session_middleware(app);
 activate_locals_middleware(app)
 //
 activate_view_middleware(app);
