@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/hoangphuc552001/Online-Auction-Project#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "express-async-errors": "^3.1.1",
