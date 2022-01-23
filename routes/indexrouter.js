@@ -14,13 +14,10 @@ import {render} from "node-sass";
 
 
 
-const hashedApi ='87188d3dedb0558b49e8baa28b414ee3175caac3e27f94bd73b5fdb0f0651bb206ecb4bfea83a060032bb0ce3fd864db';
-const hashedDomain='7dcecb51f53178edd7a6de01581da0b877ac22c459c6599c460cf8a438e5a2e62858b1e92c828e3d257fc9a16afb4a6aff40479f8e45184330814068' +
-    'f12e4764';
+const API ='51dab083705af99068f43fc917bd8f8f-ef80054a-3f8dbcb0';
+const DOMAIN='sandboxf969494c656d42e59f3631dd84278703.mailgun.org';
 
 
-const DOMAIN = crypt.decrypt(hashedDomain);
-const API = crypt.decrypt(hashedApi);
 const mailgun = mailgu({apiKey: API, domain: DOMAIN});
 
 router.get('/', async function (req, res) {
