@@ -211,7 +211,7 @@ router.post('/register', async function (req, res) {
             from: 'GPA Team<HCMUS@fit.com>',
             to: user.email,
             subject: 'Online Auction',
-            text: `Hi,\nThanks for joining GPA Online Auction! Please confirm your email address by clicking on the link below. We'll communicate with you from time to time via email so it's important that we have an up-to-date email address on file.\nhttp://localhost:3000/account/active/${user.id}\nIf you did not sign up for a GPA account please disregard this email.\nHappy emailing!\nAdministrators`
+            text: `Hi,\nThanks for joining GPA Online Auction! Please confirm your email address by clicking on the link below. We'll communicate with you from time to time via email so it's important that we have an up-to-date email address on file.\nhttps://online-auction-db.herokuapp.com/account/active/${user.id}\nIf you did not sign up for a GPA account please disregard this email.\nHappy emailing!\nAdministrators`
         };
 
         mailgun.messages().send(data);
