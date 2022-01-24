@@ -77,10 +77,10 @@ export default function (app) {
         sum(first, second) {
           return first + second;
         },
-        disable(user, seller) {
-          if (seller != user) return;
-          return "disabled";
-        },
+        // disable(user, seller) {
+        //   if (seller != user) return;
+        //   return "disabled";
+        // },
       },
     })
   );
